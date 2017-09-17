@@ -21,8 +21,8 @@ void setup() {
   pinMode(dirM2_4, OUTPUT);
   pinMode(speedM1, OUTPUT);
   pinMode(speedM2, OUTPUT); 
- pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
-pinMode(echoPin, INPUT); // Sets the echoPin as an Input 
+  pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
+  pinMode(echoPin, INPUT); // Sets the echoPin as an Input 
   Serial.begin(9600);
 }
 
@@ -44,12 +44,7 @@ Serial.println(distance);
   
   if(distance > 30 && distance < 1000)
   {
-    digitalWrite(dirM1_1, 1);
-    digitalWrite(dirM1_2, 0);    
-    digitalWrite(dirM2_3, 0);
-    digitalWrite(dirM2_4, 1);    
-    analogWrite(speedM1, 105);
-    analogWrite(speedM2, 100);
+    move_forward();
   }
   if(distance < 30 && distance > 10)
   {
@@ -66,3 +61,11 @@ Serial.println(distance);
     analogWrite(speedM2, 0);
    }
 }
+void move_forward(){
+    digitalWrite(dirM1_1, 0);   
+    digitalWrite(dirM1_2, 1);    
+    digitalWrite(dirM2_3, 1);
+    digitalWrite(dirM2_4, 0);    
+    analogWrite(speedM1, 105);
+    analogWrite(speedM2, 100);
+   }
