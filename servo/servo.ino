@@ -1,4 +1,6 @@
-#include <Servo.h>
+#include <Servo.h> //when using servo library On boards other than the Mega,
+//use of the library disables analogWrite() (PWM) functionality on pins 9 and 10,
+//whether or not there is a Servo on those pins
 
 
             //defines my servo
