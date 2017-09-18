@@ -1,7 +1,7 @@
 #include <Servo.h>
-
-
-            //defines my servo
+//when using servo library On boards other than the Mega,
+//use of the library disables analogWrite() (PWM) functionality on pins 9 and 10,
+//whether or not there is a Servo on those pins
 
 int forward = 75;
 int right = 0;
@@ -52,20 +52,19 @@ void setup() {
 
   reach = Sensor_distance();
   Serial.println(reach);
-  if(reach > 20 )
-  {
-    
+  
+  if(reach > 30 ){    
     move_forward();
     Serial.println("forward");
     }
-  if(reach >10 && reach <20){
+  if(reach >10 && reach <30){
     move_stop();
     myservo.write(left);
-    delay(1000);
+    delay(1050);
     distance_left = Sensor_distance();
     
     myservo.write(right);
-    delay(1000);
+    delay(1050);
     distance_right = Sensor_distance();
 
   }
@@ -84,6 +83,7 @@ void setup() {
     move_stop();
     Serial.println("stop");
     Serial.println(Sensor_distance());
+    move_back();
   }
 
   }
@@ -111,8 +111,8 @@ void setup() {
     digitalWrite(dirM2_3, 1);
     digitalWrite(dirM2_4, 0);    
     analogWrite(speedM1, 105);
-    analogWrite(speedM2, 100);
-    delay(900);
+    analogWrite(speedM2, 105);
+    delay(700);
 
     
    }
@@ -122,8 +122,8 @@ void setup() {
     digitalWrite(dirM2_3, 0);
     digitalWrite(dirM2_4, 1);    
     analogWrite(speedM1, 105);
-    analogWrite(speedM2, 100);
-    delay(900);
+    analogWrite(speedM2, 105);
+    delay(700);
 
     
    }
@@ -136,17 +136,17 @@ void setup() {
     digitalWrite(dirM1_2, 1);    
     digitalWrite(dirM2_3, 1);
     digitalWrite(dirM2_4, 0);    
-    analogWrite(speedM1, 105);
-    analogWrite(speedM2, 100);
+    analogWrite(speedM1, 140);
+    analogWrite(speedM2, 125);
    }
    void move_back(){
     digitalWrite(dirM1_1, 1);   
     digitalWrite(dirM1_2, 0);    
     digitalWrite(dirM2_3, 0);
     digitalWrite(dirM2_4, 1);    
-    analogWrite(speedM1, 105);
-    analogWrite(speedM2, 100);
-    delay(500);
+    analogWrite(speedM1, 140);
+    analogWrite(speedM2, 125);
+    delay(1000);
     analogWrite(speedM1, 0);
     analogWrite(speedM2, 0);
    }
